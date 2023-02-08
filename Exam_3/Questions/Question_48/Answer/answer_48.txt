@@ -1,0 +1,1 @@
+The correct answer is: (a=100, b=true, c=false), (a=90, b=false, c=true), (a=90, b=false, c=false)

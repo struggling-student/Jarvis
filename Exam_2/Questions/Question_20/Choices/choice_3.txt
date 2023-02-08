@@ -1,0 +1,2 @@
+3.
+Testare le interfacce per ciascun componente.

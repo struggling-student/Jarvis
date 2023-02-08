@@ -1,0 +1,2 @@
+2.
+Assicurarsi che un sistema che soddisfa i requisiti risolve il problema del "customer".
