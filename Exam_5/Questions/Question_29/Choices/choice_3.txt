@@ -1,2 +1,0 @@
-3.
-I metodi agile sono metodi di sviluppo orientato al riuso. 

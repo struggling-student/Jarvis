@@ -1,2 +1,0 @@
-2.
-Il performance testing è tipicamente eseguito una volta che il sistema è stato completamento integrato.

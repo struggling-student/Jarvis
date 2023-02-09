@@ -1,1 +1,0 @@
-Lo state diagram in figura descrive (in modo semplificato) una macchina distributrice di bevande. Quale dei seguenti modelli Modelica è plausibile per lo state diagram in figura?

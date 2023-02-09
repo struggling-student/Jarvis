@@ -1,2 +1,0 @@
-1.
-Testare l'interazione tra molte componenti (cioè integrazione di molte unità).

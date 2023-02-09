@@ -1,2 +1,0 @@
-3.
-Le attività di definizione dei requisiti e di sviluppo sono interleaved.

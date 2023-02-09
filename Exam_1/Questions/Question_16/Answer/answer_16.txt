@@ -1,1 +1,0 @@
-The correct answer is: A*(2 + p +q)
