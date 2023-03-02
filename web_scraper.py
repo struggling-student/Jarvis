@@ -11,6 +11,7 @@ import base64
 
 #TODO implement this function for the sample test, where the questions are 25 for each try.
 def start_sample_test():
+    link = "https://elearning.uniroma1.it/mod/quiz/view.php?id=362243"
     pass
 '''
 Get all the data from the exam page.
@@ -220,8 +221,4 @@ def main():
 # Run the main function
 if __name__ == "__main__":
     main()
-    #TODO => Scraper stops after 7th exam. Fix it.
-        #? Manually pass the exam link for each exam and then run the scraper.
-        #! Check if the exam link is corrupted.
-        #? Try running the scraper with exams from 8th to ... and see if it works.
     pass
