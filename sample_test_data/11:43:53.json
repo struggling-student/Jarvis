@@ -1,0 +1,92 @@
+{
+    "0": {
+        "domanda": "Un processo di sviluppo agile consiste di 3 iterazioni identiche di costo A. Alla fine di ogni iterazione vengono prese in considerazione le \"change requests\" e, se ve ne sono, l'iterazione viene ripetuta. Sia p la probabilit\u00e0 che ci siano \"change requests\" all fine di una iterazione. Il valore atteso del costo del progetto \u00e8:",
+        "scelte": [
+            "1.\n3*p*A",
+            "2.\n3*(A + p)",
+            "3.\n3*(1 + p)*A"
+        ],
+        "risposta": "The correct answer is: 3*(1 + p)*A"
+    },
+    "1": {
+        "domanda": "Quale delle seguenti frasi meglio descrive il criterio di \"requirements verifiability\" che \u00e8 parte della \"requirements validation activity\".",
+        "scelte": [
+            "1.\nPer ciascuna coppia di componenti, dovremmo essere in grado di scrivere un insieme di test che pu\u00f2 dimostrare che l'interazione tra le componenti soddisfa tutti i requisiti di interfaccia.",
+            "2.\nPer ciascun requisito, dovremmo essere in grado di scrivere un inseme di test che pu\u00f2 dimostrare che il sistema sviluppato soddisfa il requisito considerato.",
+            "3.\nPer ciascuna componente del sistema, dovremmo essere in grado di scrivere un insieme di test che pu\u00f2 dimostrare che essa soddisfa tutti i requisiti."
+        ],
+        "risposta": "The correct answer is: Per ciascun requisito, dovremmo essere in grado di scrivere un inseme di test che pu\u00f2 dimostrare che il sistema sviluppato soddisfa il requisito considerato."
+    },
+    "2": {
+        "domanda": "Si consideri il seguente requisito:\nRQ1:  Dopo 20 unit\u00e0 di tempo dall'inizio dell'esecuzione la variabile x \u00e8 sempre nell'intervallo [20, 30] .\nQuale dei seguenti monitor meglio descrive il requisito RQ1 ?",
+        "scelte": [
+            "1.\nclass Monitor\n\nInputReal x;  // plant output\nOutputBoolean y;\n\nBoolean z;\ninitial equation\ny = false;\nequation\nz = (time > 20) and (x >= 20) and (x <= 30) ;\nalgorithm\nwhen edge(z) then\ny := true;\nend when;\nend Monitor;",
+            "2.\nclass Monitor\n\nInputReal x;  // plant output\nOutputBoolean y;\n\nBoolean z;\ninitial equation\ny = false;\nequation\nz = (time > 20) or ((x >= 20) and (x <= 30)) ;\nalgorithm\nwhen edge(z) then\ny := true;\nend when;\nend Monitor;",
+            "3.\nclass Monitor\n\nInputReal x;  // plant output\nOutputBoolean y;\n\nBoolean z;\ninitial equation\ny = false;\nequation\nz = (time > 20) and ((x >= 30) or (x <= 20)) ;\nalgorithm\nwhen edge(z) then\ny := true;\nend when;\nend Monitor;"
+        ],
+        "risposta": "The correct answer is: class Monitor\n\nInputReal x;  // plant output\nOutputBoolean y;\n\nBoolean z;\ninitial equation\ny = false;\nequation\nz = (time > 20) and ((x >= 30) or (x <= 20)) ;\nalgorithm\nwhen edge(z) then\ny := true;\nend when;\nend Monitor;"
+    },
+    "3": {
+        "domanda": "Quale delle seguenti frasi meglio descrive l'obiettivo del \"validity check\" che \u00e8 parte della \"requirements validation activity\".",
+        "scelte": [
+            "1.\nAssicurarsi che non ci siano requisiti in conflitto con altri requisiti.",
+            "2.\nAssicurarsi che un sistema che soddisfa i requisiti risolve il problema del \"customer\".",
+            "3.\nAssicurarsi che i requisiti funzionali descrivano tutte le funzionalit\u00e0 del sistema."
+        ],
+        "risposta": "The correct answer is: Assicurarsi che un sistema che soddisfa i requisiti risolve il problema del \"customer\"."
+    },
+    "4": {
+        "domanda": "Quale delle seguenti affermazioni \u00e8 vera riguardo ai metodi agile ?",
+        "scelte": [
+            "1.\nI metodi agile sono metodi di sviluppo incrementale. ",
+            "2.\nI metodi agile sono metodi di sviluppo plan-driven. ",
+            "3.\nI metodi agile sono metodi di sviluppo orientato al riuso. "
+        ],
+        "risposta": "The correct answer is: I metodi agile sono metodi di sviluppo incrementale. "
+    },
+    "5": {
+        "domanda": "Quale delle seguenti affermazioni \u00e8 vera riguardo all'alpha testing ?",
+        "scelte": [
+            "1.\nGli utenti del sistema lavorano insieme al team di sviluppo per testare il software nel sito di sviluppo.",
+            "2.\nTest automatizzati sono eseguiti su una versione preliminare del sistema.",
+            "3.\nTest automatizzati sono eseguiti sulla prima release del sistema."
+        ],
+        "risposta": "The correct answer is: Gli utenti del sistema lavorano insieme al team di sviluppo per testare il software nel sito di sviluppo."
+    },
+    "6": {
+        "domanda": "Si consideri il seguente requisito:\nRQ:  Dopo 60 unit\u00e0 di tempo dall'inizio dell'esecuzione vale la seguente propriet\u00e0:\nse 10 unit\u00e0 di tempo nel passato era stata richiesta una risorsa (variabile x positiva) allora ora \u00e8 concesso l'accesso alla risorsa (variabile y positiva)\nTenendo presente che, al tempo time, delay(z, w) ritorna 0 se time < w e ritorna il valore che z aveva al tempo (time - w), se time >= w.\nQuale dei seguenti monitor meglio descrive il requisito RQ ?",
+        "scelte": [
+            "1.\nclass Monitor\nInputReal x, y; \nOutputBoolean wy;\nBoolean wz;\ninitial equation\nwy = false;\nequation\nwz = (time > 60) and (delay(x, 10) > 0) and (y <= 0);\nalgorithm\nwhen edge(wz) then\nwy := true;\nend when;\nend Monitor;",
+            "2.\nclass Monitor\nInputReal x, y; \nOutputBoolean wy;\nBoolean wz;\ninitial equation\nwy = false;\nequation\nwz = (time > 60) and (delay(x, 10) > 0) and (y > 0);\nalgorithm\nwhen edge(wz) then\nwy := true;\nend when;\nend Monitor;",
+            "3.\nclass Monitor\nInputReal x, y; \nOutputBoolean wy;\nBoolean wz;\ninitial equation\nwy = false;\nequation\nwz = (time > 60) or (delay(x, 10) > 0) or  (y <= 0);\n\nalgorithm\nwhen edge(wz) then\nwy := true;\nend when;\nend Monitor;"
+        ],
+        "risposta": "The correct answer is: class Monitor\nInputReal x, y; \nOutputBoolean wy;\nBoolean wz;\ninitial equation\nwy = false;\nequation\nwz = (time > 60) and (delay(x, 10) > 0) and (y <= 0);\nalgorithm\nwhen edge(wz) then\nwy := true;\nend when;\nend Monitor;"
+    },
+    "7": {
+        "domanda": "Il rischio R pu\u00f2 essere calcolato come R = P*C, dove P \u00e8 la probabilit\u00e0 dell'evento avverso (software failure nel nostro contesto) e C \u00e8 il costo dell'occorrenza dell'evento avverso. Assumiamo che la probabilit\u00e0 P sia legata al costo di sviluppo S dalla formula P = exp(-b*S), dove b \u00e8 una opportuna costante note da dati storici aziendali. Quale sar\u00e0 il costo dello sviluppo S di un software il cui costo della failure \u00e8 C ed il rischio ammesso \u00e8 R?",
+        "scelte": [
+            "1.\nS = (1/b)*ln(C/R)",
+            "2.\nS = b*ln(R/C)",
+            "3.\nS = (1/b)*ln(R/C)"
+        ],
+        "risposta": "The correct answer is: S = (1/b)*ln(C/R)"
+    },
+    "8": {
+        "domanda": "Verification answers the following question:",
+        "scelte": [
+            "1.\nAre we building the system right?\u2019",
+            "2.\nAre we building the right system?\u2019",
+            "3.\nIs the system cost reasonable for the intended market ?"
+        ],
+        "risposta": "The correct answer is: Are we building the system right?\u2019"
+    },
+    "9": {
+        "domanda": "Si pianifica di sviluppare un software gestionale per una universit\u00e0. Considerando che questo pu\u00f2 essere considerato un sistema mission-critical, quali dei seguenti modelli di processi software generici \u00e8 pi\u00f9 adatto per lo sviluppo di tale software.",
+        "scelte": [
+            "1.\nSviluppo Iterativo",
+            "2.\nSviluppo plan-driven.",
+            "3.\nSviluppo Agile."
+        ],
+        "risposta": "The correct answer is: Sviluppo plan-driven."
+    }
+}
