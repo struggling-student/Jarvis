@@ -1,0 +1,2 @@
+2.
+Testing interactions among components (i.e., integration of several units).

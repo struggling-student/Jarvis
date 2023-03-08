@@ -1,0 +1,2 @@
+1.
+Periodicamente il client comunica ai pazienti le disponibilità dei medici.

@@ -14,17 +14,24 @@ Get all the data from the exam page.
 NOTE: this function is not used anymore, but it's still here for reference. You can use it if you want to download the exams via txt files.
 '''
 
-def get_data_files(driver,x):
+def get_data_files(driver, directory_finale, checker, x):
     directory = f"Exam_{x}"
     os.mkdir(directory)
     directory = f"Exam_{x}/Questions"
     os.mkdir(directory)
-        
-    for i in range(50):
-        directory = f"Exam_{x}/Questions/Question_{i}"
-        os.mkdir(directory)
-        directory = f"Exam_{x}/Questions/Question_{i}/Choices"
-        os.mkdir(directory)
+    
+    if checker == 50:
+        for i in range(50):
+            directory = f"Exam_{x}/Questions/Question_{i}"
+            os.mkdir(directory)
+            directory = f"Exam_{x}/Questions/Question_{i}/Choices"
+            os.mkdir(directory)
+    else:
+        for i in range(40):
+            directory = f"Exam_{x}/Questions/Question_{i}"
+            os.mkdir(directory)
+            directory = f"Exam_{x}/Questions/Question_{i}/Choices"
+            os.mkdir(directory)
 
     questions = driver.find_elements(by=By.XPATH, value='//div[@class="qtext"]')
     for i, question in enumerate(questions):
@@ -152,6 +159,7 @@ Start a new exam. It's the same function of review_old_exam() but it starts the 
 '''
 
 def start_new_exam(driver, course_link, exams_50, exams_40, directory):
+    esame = 0
     for link in exams_50:
         checker = 50
         print(link)
@@ -183,7 +191,9 @@ def start_new_exam(driver, course_link, exams_50, exams_40, directory):
         visualizza.click()
 
         time.sleep(3)
-        get_data(driver,directory, checker)
+        #get_data(driver,directory, checker)
+        esame += 1
+        get_data_files(driver,directory,checker,esame)
     
     for link in exams_40:
         checker = 40
@@ -212,7 +222,9 @@ def start_new_exam(driver, course_link, exams_50, exams_40, directory):
         confirm.click()
 
         time.sleep(3)
-        get_data(driver,directory,checker)
+        #get_data(driver,directory,checker)
+        esame += 1
+        get_data_files(driver,directory,checker,esame)
 
 '''
 Review the old exams. It's the same function of start_new_exam() but it doesn't start the exam.
@@ -239,8 +251,8 @@ def login(driver, course_link, exams_50, exams_40, directory):
     driver.get('https://elearning.uniroma1.it/auth/mtsaml/')
     username = driver.find_element(by=By.NAME, value="j_username")
     password = driver.find_element(by=By.NAME, value="j_password")
-    username.send_keys("")
-    password.send_keys("")
+    username.send_keys()
+    password.send_keys()
     login_button = driver.find_element(by=By.NAME, value="_eventId_proceed")
     login_button.click()
     start_new_exam(driver, course_link, exams_50, exams_40, directory)

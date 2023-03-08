@@ -1,0 +1,2 @@
+1.
+Testare l'interazione tra  le componenti del sistema (cioè, integrazione di molte unità di sistema).

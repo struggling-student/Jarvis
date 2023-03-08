@@ -1,0 +1,2 @@
+3.
+Accertarsi che i requisiti definiscano un sistema che risolve il problema che l'utente pianifica di risolvere.

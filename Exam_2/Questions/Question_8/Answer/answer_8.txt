@@ -1,0 +1,1 @@
+The correct answer is: S = (1/b)*ln(C/R)

@@ -1,0 +1,2 @@
+2.
+La variabile x è nell'intervallo [0, 5].

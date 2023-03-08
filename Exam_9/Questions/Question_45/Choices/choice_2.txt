@@ -1,0 +1,2 @@
+2.
+Assicurarsi che i requisiti funzionali descrivano tutte le funzionalità del sistema.

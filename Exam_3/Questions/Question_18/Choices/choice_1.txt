@@ -1,0 +1,2 @@
+1.
+Test automatizzati sono eseguiti su una versione preliminare del sistema.

@@ -1,0 +1,2 @@
+2.
+Accertarsi che l'architettura del sistema soddisfi i requisiti dati. 

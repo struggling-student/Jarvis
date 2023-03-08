@@ -1,0 +1,2 @@
+2.
+Il performance testing è tipicamente eseguito solo sulle componenti del sistema prima dell'integrazione.

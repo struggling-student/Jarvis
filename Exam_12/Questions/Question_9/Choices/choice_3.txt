@@ -1,0 +1,2 @@
+3.
+Testare l'interazione tra componenti.
