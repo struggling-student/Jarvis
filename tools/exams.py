@@ -78,8 +78,11 @@ Get all the data from the exam page.
 NOTE: this function is not used anymore, but it's still here for reference.
 '''
 
-def get_data_new(driver, directory_finale):
-    esame = { x:{} for x in range(50)}
+def get_data(driver, directory_finale, checker):
+    if checker == 50:
+        esame = { x:{} for x in range(50)}
+    else:
+        esame = { x:{} for x in range(40)}
 
     questions = driver.find_elements(by=By.XPATH, value='//div[@class="qtext"]')
     directory = f"Foto"
@@ -148,8 +151,9 @@ def get_data_new(driver, directory_finale):
 Start a new exam. It's the same function of review_old_exam() but it starts the exam.
 '''
 
-def start_new_exam(driver, course_link, exams, directory):
-    for link in exams:
+def start_new_exam(driver, course_link, exams_50, exams_40, directory):
+    for link in exams_50:
+        checker = 50
         print(link)
         driver.get(course_link)
         driver.get(link)
@@ -179,7 +183,36 @@ def start_new_exam(driver, course_link, exams, directory):
         visualizza.click()
 
         time.sleep(3)
-        get_data_new(driver,directory)
+        get_data(driver,directory, checker)
+    
+    for link in exams_40:
+        checker = 40
+        print(link)
+        driver.get(course_link)
+        driver.get(link)
+                
+        time.sleep(3)
+        tentativo=driver.find_element(by=By.CSS_SELECTOR, value="[type='submit']")
+        tentativo.click()
+
+        time.sleep(3)
+        avvia=driver.find_element(by=By.XPATH, value='//input[@id="id_submitbutton"]')
+        avvia.click()
+
+        time.sleep(3)
+        termina=driver.find_element(by=By.XPATH, value='//a[@class="endtestlink aalink"]')
+        termina.click()
+
+        time.sleep(3)
+        invia=driver.find_element(by=By.XPATH, value="//button[text()='Submit all and finish']")
+        invia.click()
+
+        time.sleep(3)
+        confirm=driver.find_element(by=By.XPATH,value='//input[@value="Submit all and finish"]')
+        confirm.click()
+
+        time.sleep(3)
+        get_data(driver,directory,checker)
 
 '''
 Review the old exams. It's the same function of start_new_exam() but it doesn't start the exam.
@@ -195,14 +228,14 @@ def review_old_exam(driver, course_link, exam_link,i):
     domande=driver.find_element("link text", "Show all questions on one page")
     domande.click()
     time.sleep(3)
-    get_data_new(driver,i)
+    #get_data_new(driver,i)
 
 '''
 Login function for the elearning website. After login it starts scraping the exams inside the exams.txt file.
 NOTE: Insert your username and password in the send_keys() function.
 '''
 
-def login(driver, course_link, exams,directory):
+def login(driver, course_link, exams_50, exams_40, directory):
     driver.get('https://elearning.uniroma1.it/auth/mtsaml/')
     username = driver.find_element(by=By.NAME, value="j_username")
     password = driver.find_element(by=By.NAME, value="j_password")
@@ -210,23 +243,23 @@ def login(driver, course_link, exams,directory):
     password.send_keys("")
     login_button = driver.find_element(by=By.NAME, value="_eventId_proceed")
     login_button.click()
-    start_new_exam(driver, course_link, exams, directory)
+    start_new_exam(driver, course_link, exams_50, exams_40, directory)
 
 ''' 
 Main function of the program for running the scraper.
 NOTE : The path to the chromedriver must be changed to the path of the chromedriver on your computer.
 '''
 
-def main(exams):
+def main(exams_50, exams_40):
     directory = "/Users/lucian/Documents/GitHub/ExamScraper/exams_data"
     service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
     course_link = "https://elearning.uniroma1.it/course/view.php?id=11834" 
     driver = webdriver.Chrome(service=service)
     time.sleep(5)
-    login(driver, course_link, exams, directory)
+    login(driver, course_link, exams_50, exams_40, directory)
 
 if __name__ == "__main__":
-    exams = [
+    exams_50 = [
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=529645",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=444693",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=448926",
@@ -235,14 +268,16 @@ if __name__ == "__main__":
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=487620",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=489901",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=511326",
-        #! 40 domande con pagina full
-        #"https://elearning.uniroma1.it/mod/quiz/view.php?id=429255",
+        "https://elearning.uniroma1.it/mod/quiz/view.php?id=533412"
+    ]
+
+    exams_40 = [
+        "https://elearning.uniroma1.it/mod/quiz/view.php?id=429255",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=412503",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=408285",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=406112",
         "https://elearning.uniroma1.it/mod/quiz/view.php?id=385932",
-        "https://elearning.uniroma1.it/mod/quiz/view.php?id=529645",
-        "https://elearning.uniroma1.it/mod/quiz/view.php?id=533412",
+
     ]
-    main(exams)
+    main(exams_50, exams_40)
     pass
