@@ -1,5 +1,4 @@
-Si consideri il seguente requisito:
-RQ:  Dopo 60 unità di tempo dall'inizio dell'esecuzione vale la seguente proprietà:
-se 10 unità di tempo nel passato era stata richiesta una risorsa (variabile x positiva) allora ora è concesso l'accesso alla risorsa (variabile y positiva)
-Tenendo presente che, al tempo time, delay(z, w) ritorna 0 se time < w e ritorna il valore che z aveva al tempo (time - w), se time >= w.
-Quale dei seguenti monitor meglio descrive il requisito RQ ?
+Un test oracle per un programma P è una funzione booleana che ha come inputs gli inputs  ed outputs  di P e ritorna true se e solo se il valore di output di P (con i dati inputs) è quello atteso dalle specifiche.
+Si consideri la seguente specifica funzionale per la funzione f.
+La funzione f(int *A, int *B)  prende come input un vettore A di dimensione n  ritorna come output un vettore B ottenuto ordinando gli elementi di A in ordine crescente.
+Quale delle seguenti funzioni è un test oracle per la funzione f ?

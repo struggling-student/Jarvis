@@ -1,22 +1,38 @@
-Una Condition è una proposizione booleana, cioè una espressione con valore booleano che non può essere decomposta 
-in espressioni boolean più semplici. Ad esempio, (x + y <= 3) è una condition.
+Si consideri il seguente modello Modelica. Quale dei seguenti UML state diagram lo rappresenta correttamente ?
+block FSA  //  Finite State Automaton
 
-Una Decision è una espressione booleana composta da conditions e zero o più operatori booleani. Ad esempio, sono decisions:
-(x + y <= 3) 
-((x + y <= 3) || (x - y > 7))
-Un insieme di test cases T soddisfa il criterio di  Condition/Decision coverage se tutte le seguenti condizioni sono soddisfatte:
+/* connector declarations outside this block:
+connector InputInteger = input Integer;
+connector OutputInteger = output Integer;
+*/
 
-1) Ciascun punto di entrata ed uscita nel programma è eseguito in almeno un test;
-2) Per ogni decision d nel programma, per ogni condition c in d, esiste un test in T in cui c è true ed un test in T in cui c è false.
-3) Per ogni decision d nel programma, esiste un test in T in cui d è true ed un test in T in cui d è false.
+InputInteger u; // external input
+OutputInteger x; // state
+parameter Real T = 1;
 
-Si consideri la seguente funzione:
-int f(int a, int b, int c)
-{    if ( (a >= 100) && (b - c <= 1) )
-          return (1);    // punto di uscita 1
-      else if ((b - c <= 1)  || (b + c >= 5)
-)
-           then return (2);   // punto di uscita 2
-           else return (3);   // punto di uscita 3
-}
-   Quale dei seguenti test set soddisfa il criterio della Condition/Decision coverage ?
+algorithm
+
+when initial() then
+x := 0;
+
+elsewhen sample(0,T) then
+
+if (pre(x) == 0) and (pre(u) == 0) then x := 1;
+elseif (pre(x) == 0) and (pre(u) == 1) then x := 2;
+elseif (pre(x) == 0) and (pre(u) == 2) then x := 2;
+elseif (pre(x) == 1) and (pre(u) == 0) then x := 2;
+elseif (pre(x) == 1) and (pre(u) == 1) then x := 0;
+elseif (pre(x) == 1) and (pre(u) == 2) then x := 0;
+elseif (pre(x) == 2) and (pre(u) == 0) then x := 0;
+elseif (pre(x) == 2) and (pre(u) == 1) then x := 3;
+elseif (pre(x) == 2) and (pre(u) == 2) then x := 1;
+elseif (pre(x) == 3) and (pre(u) == 1) then x := 1;
+elseif (pre(x) == 3) and (pre(u) == 2) then x := 1;
+elseif (pre(x) == 4) and (pre(u) == 0) then x := 1;
+elseif (pre(x) == 4) and (pre(u) == 1) then x := 0;
+elseif (pre(x) == 4) and (pre(u) == 2) then x := 1;
+else x := pre(x); // default
+end if;
+
+end when;
+end FSA;

@@ -1,16 +1,14 @@
 3.
 class Monitor
-
-InputReal x;  // plant output
-OutputBoolean y;
-
-Boolean z;
+InputReal x, y; 
+OutputBoolean wy;
+Boolean wz;
 initial equation
-y = false;
+wy = false;
 equation
-z = (time > 20) and ((x >= 30) or (x <= 20)) ;
+wz = (time > 60) and (delay(x, 10) > 0) and (y > 0);
 algorithm
-when edge(z) then
-y := true;
+when edge(wz) then
+wy := true;
 end when;
 end Monitor;

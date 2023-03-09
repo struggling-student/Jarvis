@@ -1,8 +1,12 @@
-Il partition coverage di un insieme di test cases è la percentuale di elementi della partition inclusi nei test cases. La partition è una partizione finita dell'insieme di input della funzione che si sta testando.
-Si consideri la seguente funzione C:
-int f1(int x)  { return (2*x); }
-Si vuole testare la funzione f1(). A tal fine l'insieme degli interi viene partizionato come segue: 
-{(-inf, -11], [-10, -1], {0}, [1, 50], [51, +inf)}
+ La state coverage di un insieme di test cases (cioè sequenze di inputs) per uno state diagram è la percentuale di stati (inclusi START ed END) raggiunti almeno una volta.
+Si consideri lo state diagram in figura 
+
+
+
+
 Si consideri il seguente insieme di test cases:
-{x=-100, x= 40, x=100}
-Quale delle seguenti è la partition coverage conseguita?
+Test case 1: act1 act2 
+Test case 2: act2 act0 act1 act0 act0 
+Test case 3: act2 act0 act2 
+
+Quale delle seguenti è la migliore stima della state coverage per i test cases di cui sopra

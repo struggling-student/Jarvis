@@ -24,8 +24,12 @@ def get_questions(driver):
         for domanda in domande:
             #NOTE: Se una domanda è un'immagine, allora salva l'immagine
             if len(domanda.find_elements(by=By.TAG_NAME, value="img")) > 0:
-                file_name = f"Data/Domanda_{i}/Domanda.png"
-                with open(file_name, "wb") as f:
+                text_file = f"Data/Domanda_{i}/Domanda.txt"
+                with open(text_file, "w") as f:
+                    f.write(domanda.text)
+
+                photo_file = f"Data/Domanda_{i}/Domanda.png"
+                with open(photo_file, "wb") as f:
                     f.write(domanda.find_element(by=By.TAG_NAME, value="img").screenshot_as_png) 
             #NOTE: Se una domanda è un testo, allora salva il testo
             else:
@@ -107,10 +111,9 @@ def main():
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
     #NOTE : Prende le domande dalla pagina e le salva nella cartella data
-    #get_questions(driver)
+    get_questions(driver)
 
     #NOTE: Risponde alle domande in base al contenuto del file output.txt
-    #TODO: Implementare la risposta alle domande
-    rispondi(driver)
+    #rispondi(driver)
 if __name__ == "__main__":
     main()

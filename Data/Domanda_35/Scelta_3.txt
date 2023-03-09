@@ -1,2 +1,2 @@
 3.
-State coverage: 85%
+Transition coverage: 55%

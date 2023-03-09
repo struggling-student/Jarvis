@@ -1,2 +1,2 @@
 1.
-100%
+State coverage: 80%

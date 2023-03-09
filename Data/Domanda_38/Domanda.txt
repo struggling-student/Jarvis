@@ -1,6 +1,10 @@
-Il partition coverage di un insieme di test cases è la percentuale di elementi della partition inclusi nei test cases. La partition è una partizione finita dell'insieme di input della funzione che si sta testando.
+Un test oracle per un programma P è una funzione booleana che ha come inputs gli inputs  ed outputs  di P e ritorna true se e solo se il valore di output di P (con i dati inputs) è quello atteso dalle specifiche.
 Si consideri la seguente funzione C:
-int f1(int x)  { return (x + 7); }
-Si vuole testare la funzione f1(). A tal fine l'insieme degli interi viene partizionato come segue: 
-{(-inf, -101], [-100, -1], {0}, [1, 500], [501, +inf)}
-Quale dei seguenti test cases consegue una partition coverage del 100% ?
+-----------
+int f(int x, int y)  {   
+int z, k;
+z = 1;   k = 0;
+while (k < x)  { z = y*z;  k = k + 1; }
+return (z);
+}
+Siano x, y, gli inputs del programma (f nel nostro caso) e z l'output. Assumendo il programma corretto, quale delle seguenti funzioni booleane F(x, y, z) è un test oracle per la funzione f.

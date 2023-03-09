@@ -1,4 +1,36 @@
-Un test oracle per un programma P è una funzione booleana che ha come inputs gli inputs  ed outputs  di P e ritorna true se e solo se il valore di output di P (con i dati inputs) è quello atteso dalle specifiche.
-Si consideri la seguente specifica funzionale per la funzione f.
-La funzione f(int *A, int *B)  prende come input un vettore A di dimensione n  ritorna come output un vettore B ottenuto ordinando gli elementi di A in ordine crescente.
-Quale delle seguenti funzioni è un test oracle per la funzione f ?
+Si consideri il seguente modello Modelica. Quale dei seguenti UML state diagram lo rappresenta correttamente ?
+block FSA  //  Finite State Automaton
+
+/* connector declarations outside this block:
+connector InputInteger = input Integer;
+connector OutputInteger = output Integer;
+*/
+
+InputInteger u; // external input
+OutputInteger x; // state
+parameter Real T = 1;
+
+algorithm
+
+when initial() then
+x := 0;
+
+elsewhen sample(0,T) then
+
+if (pre(x) == 0) and (pre(u) == 0) then x := 4;
+elseif (pre(x) == 0) and (pre(u) == 2) then x := 1;
+elseif (pre(x) == 1) and (pre(u) == 0) then x := 4;
+elseif (pre(x) == 1) and (pre(u) == 1) then x := 3;
+elseif (pre(x) == 1) and (pre(u) == 2) then x := 3;
+elseif (pre(x) == 2) and (pre(u) == 0) then x := 4;
+elseif (pre(x) == 2) and (pre(u) == 1) then x := 1;
+elseif (pre(x) == 2) and (pre(u) == 2) then x := 3;
+elseif (pre(x) == 3) and (pre(u) == 0) then x := 1;
+elseif (pre(x) == 3) and (pre(u) == 1) then x := 0;
+elseif (pre(x) == 3) and (pre(u) == 2) then x := 2;
+elseif (pre(x) == 4) and (pre(u) == 1) then x := 2;
+else x := pre(x); // default
+end if;
+
+end when;
+end FSA;

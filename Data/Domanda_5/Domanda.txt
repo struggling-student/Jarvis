@@ -1,3 +1,4 @@
-Si consideri il seguente requisito:
-RQ:  Durante l'esecuzione del programma (cioè per tutti gli istanti di tempo positivi) la variabile x è sempre nell'intervallo [0, 5].
-Quale dei seguenti monitor meglio descrive il requisito RQ ?
+Pre-condizioni,  invarianti e post-condizioni di un programma possono essere definiti usando la macro del C assert() (in <assert.h>).  In particolare, assert(expre) non fa nulla se l'espressione expre vale TRUE (cioè non è 0), stampa un messaggio di errore su stderr e abortisce l'esecuzione del programma altrimenti.
+Si consideri la funzione C
+int f(in x, int y) { ..... }
+Quale delle seguenti assert esprime la pre-condizione che entrambi gli argomenti di f sono non-negativi ed almeno uno di loro è positivo ?

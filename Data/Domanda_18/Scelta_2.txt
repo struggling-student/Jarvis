@@ -1,2 +1,2 @@
 2.
-500000 EUR
+Transition coverage: 50%

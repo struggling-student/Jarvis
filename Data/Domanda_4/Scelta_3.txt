@@ -1,2 +1,2 @@
 3.
-Accertarsi che il sistema soddisfi i requisiti dati. 
+Transition coverage: 80%

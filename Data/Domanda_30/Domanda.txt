@@ -1,4 +1,8 @@
-Pre-condizioni,  invarianti e post-condizioni di un programma possono essere definiti usando la macro del C assert() (in <assert.h>).  In particolare, assert(expre) non fa nulla se l'espressione expre vale TRUE (cioè non è 0), stampa un messaggio di errore su stderr e abortisce l'esecuzione del programma altrimenti.
-Si consideri la funzione C
-int f(in x, int y) { ..... }
-Quale delle seguenti assert esprime la pre-condizione che entrambi gli argomenti di f sono non-negativi ed almeno uno di loro è positivo ?
+Il branch coverage di un insieme di test cases è la percentuale di branch del programma che sono attraversati da almeno un test case.
+Si consideri la seguente funzione C:
+-----------
+int f(int x, int y)  {   
+ if (x - y <= 0)   { if (x + y >= 1)  return (1); else return (2); }
+  else {if (2*x + y >= 5)  return (3); else return (4); }
+ }  /* f()  */
+Quale dei seguenti test sets consegue una branch coverage del 100% ?
