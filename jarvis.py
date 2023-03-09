@@ -5,12 +5,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-def main():
-    chrome_options = Options()
-    chrome_options.add_experimental_option("debuggerAddress", "localhost:8989")
-    service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    
+
+
+def get_questions(driver):
     #creo la directory per salvare le domande
     directory = f"Data"
     os.mkdir(directory)
@@ -59,11 +56,61 @@ def main():
                 with open(file_name, "w") as f:
                     f.write(scelta.text)
         
-
         if i == 49:
             print("Finito")
         else:        
             continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
             continua.click()
+
+
+
+def rispondi(driver):
+    
+    #NOTE: Prende il file output.txt    
+    with open("/Users/lucian/Documents/GitHub/ExamScraper/outputs.txt", "r") as f:
+        output = f.read()
+        output = output.split("\n")
+        for risposta in output:
+            if risposta == "Immagine":
+                print("Risposta nella cartella immagine")
+
+                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                continua.click() 
+            elif risposta == "1": 
+                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer0")]')
+                scelta.click()  
+
+                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                continua.click()                
+            elif risposta == "2":
+                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer1")]')
+                scelta.click()  
+
+                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                continua.click()                
+            elif risposta == "3":
+                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer2")]')
+                scelta.click()  
+
+                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                continua.click()
+            else:
+                print("Risposta non trovata)")
+
+                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                continua.click()   
+
+def main():
+    chrome_options = Options()
+    chrome_options.add_experimental_option("debuggerAddress", "localhost:8989")
+    service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    
+    #NOTE : Prende le domande dalla pagina e le salva nella cartella data
+    #get_questions(driver)
+
+    #NOTE: Risponde alle domande in base al contenuto del file output.txt
+    #TODO: Implementare la risposta alle domande
+    rispondi(driver)
 if __name__ == "__main__":
     main()
