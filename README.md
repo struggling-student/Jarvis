@@ -1,21 +1,27 @@
-# ExamScraper for Moodle
+# Jarvis - Exam Bot & Scraper 
 
 ## Requisiti prima di utilizzare il programma
 Seguire i seguenti passaggi per poter installare i requisiti necessari per poter utilizzare il programma. 
 
 ## Selenium e ChromeDriver
+> **ATTENZIONE**: Questa parte è necessaria per poter utilizzare il programma sia per lo scraping che per l'esecuzione durante l'esame.
+
 Installare Selenium con pip.
 ```
 pip install selenium
 ```
-Installare ChromeDriver. Scaricare il file dal sito di [ChromeDriver](https://sites.google.com/chromium.org/driver/downloads?authuser=0). Spostare il file in una cartella a scelta.  
 
-Aprire il file `exams.py` e modificare la variabile `service` con il percorso del file `chromedriver` appena scaricato.
+Installare ChromeDriver, controllare la propria versione di Chrome per installare il ChromeDriver compatibile. Scaricare il file dal sito di [ChromeDriver](https://sites.google.com/chromium.org/driver/downloads?authuser=0). Spostare il file in una cartella a scelta.  
+
+Aprire il file `exams.py` e modificare la variabile `service` con il percorso del file `chromedriver.exe` appena scaricato.
+
 ```
 service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
 ``` 
 
 ### Chrome in remote debugging mode
+> **ATTENZIONE**: Questa parte è necessaria per utilizzare il programma durante l'esame.
+
 Per poter utilizzare il programma durante l'esame è necessario aprire Chrome in remote debugging mode. Questo permette di controllare Chrome da un programma esterno. Seguire i seguenti passaggi per aprire Chrome in remote debugging mode. 
 > **ATTENZIONE**: I seguenti passaggi sono stati testati su Mac OS e Linux. Per Windows fare riferimento a questa [guida](https://robocorp.com/docs/development-guide/browser/how-to-attach-to-running-chrome-browser). 
 
@@ -45,11 +51,10 @@ Per poter utilizzare il programma durante l'esame è necessario seguire i seguen
 4. Una volta terminato il programma, sulla console ci sarà un messaggio che ci dice che il programma è terminato. 
 5. Aprire il file `jarvis.py` ed eliminare il commento per la funzione `rispondi()`.
 6. TODO 
-7. TODO
-8. Eseguire il file `jarvis.py` con il comando `python jarvis.py` da terminale. Non toccare il mouse o la tastiera durante l'esecuzione del programma. Il programma utilizzerà la finestra Chrome per inserire le risposte presenti nel file `risposte.txt`. Questo processo richiede in media 1 o 2 minuti.
+7. Eseguire il file `jarvis.py` con il comando `python jarvis.py` da terminale. Non toccare il mouse o la tastiera durante l'esecuzione del programma. Il programma utilizzerà la finestra Chrome per inserire le risposte presenti nel file `risposte.txt`. Questo processo richiede in media 1 o 2 minuti.
 
 ### Utilizzo dopo l'esame 
-Lasciare una stella alla repository se ti è stato utile per l'esame. Grazie! 
+Lasciare una stella alla repository se ti è stato utile. Grazie! 
 
 > **ATTENZIONE**: Questo programma è stato realizzato per scopo di esperienza personale. Non mi assumo nessuna responsabilità per l'utilizzo che ne verrà fatto.
 
