@@ -59,46 +59,78 @@ def get_questions(driver):
                     f.write(scelta.text)
         
         if i == 49:
-            print("Finito")
+            print("Scaricato tutte le domande.")
+            continua=driver.find_element(by=By.XPATH,value='//span[@class="thispageholder"]')
+            continua.click()            
         else:        
             continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
             continua.click()
 
 def rispondi(driver):
-    i = 0
+    domanda = 0
     #NOTE: Prende il file output.txt    
     with open("/Users/lucian/Documents/GitHub/ExamScraper/output.txt", "r") as f:
         output = f.read()
         output = output.split("\n")
         for risposta in output:
             if risposta == "Immagine":
-                print("Risposta nella cartella immagine")
-
-                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
-                continua.click() 
-            elif risposta == "1": 
-                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer0")]')
-                scelta.click()  
-
-                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
-                continua.click()                
-            elif risposta == "2":
-                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer1")]')
-                scelta.click()  
-
-                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
-                continua.click()                
-            elif risposta == "3":
-                scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer2")]')
-                scelta.click()  
-
-                continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
-                continua.click()
-            else:
-                if i == 49:
-                    print("Finito")
+                if domanda == 49:
+                    print("Risposta nella cartella immagine.")
+                    print("Risposto a tutte le domande.")
                 else:
-                    print("Risposta non trovata)")
+                    print("Risposta nella cartella immagine.")
+                
+                    domanda += 1      
+
+                    continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                    continua.click() 
+            elif risposta == "1": 
+                if domanda == 49:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer0")]')
+                    scelta.click()
+                    print("Risposto a tutte le domande.")
+                else:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer0")]')
+                    scelta.click()  
+
+                    domanda += 1 
+
+                    continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                    continua.click()                
+            elif risposta == "2":
+                if domanda == 49:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer1")]')
+                    scelta.click()
+                    print("Risposto a tutte le domande.") 
+                else:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer1")]')
+                    scelta.click()  
+
+                    domanda += 1 
+
+                    continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                    continua.click()                
+            elif risposta == "3":
+                if domanda == 49:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer2")]')
+                    scelta.click() 
+                    print("Risposto a tutte le domande.")
+                else:
+                    scelta=driver.find_element(by=By.XPATH,value='//input[contains(@id, "answer2")]')
+                    scelta.click()  
+
+                    domanda += 1 
+
+                    continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
+                    continua.click()
+            else:
+                if domanda == 49:
+                    pass
+                else:
+                    print("Risposta non trovata.")
+
+                    domanda += 1 
+
                     continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
                     continua.click()   
 
