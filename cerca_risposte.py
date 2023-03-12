@@ -9,11 +9,13 @@ import re
 from pathlib import Path
 import cv2
 import numpy as np
+from magic_file import magicFunction
 
 from skimage.metrics import structural_similarity 
 
 def main(valore, quante_domande):
     start(valore, quante_domande)
+
 def start(valore, quante_domande):
     #incidenza = float(input("Inserisci l'incidenza di somiglianza tra le immagini(consiglio:partire da 0.9,se il foglio output resistuisce ? a qualche domanda, allora mettere 0.87,poi 0.85,0.83,etc.. fin quando non ci sono piu ?,se scende sotto 0.75 probabilmente la domanda non c'è): "))
     incidenza = float(valore)
@@ -110,7 +112,7 @@ def domanda_test_risp_test(index):
                         elif confronta_file(file_corretto,risp3) == 1:
                             return "3"
                         else:
-                            return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
+                            return magicFunction(file_domanda_esame,risp1,risp2,risp3)  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
      return "?" #non ho trovato la domanda corretta
 
 def domanda_test_risp_img(index):
@@ -178,7 +180,7 @@ def domanda_img_risp_test(index,incidenza):
                             elif confronta_file(file_corretto,risp3) == 1:
                                 return "3"
                             else:
-                                return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
+                                return magicFunction(file_domanda_esame_txt,risp1,risp2,risp3,file_domanda_esame,incidenza)  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
     return "?" #non ho trovato la domanda corretta
 
 def domanda_img_risp_img(index,incidenza):
