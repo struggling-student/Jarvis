@@ -12,13 +12,13 @@ import numpy as np
 
 from skimage.metrics import structural_similarity 
 
-def main(valore):
-    start(valore)
-def start(valore):
+def main(valore, quante_domande):
+    start(valore, quante_domande)
+def start(valore, quante_domande):
     #incidenza = float(input("Inserisci l'incidenza di somiglianza tra le immagini(consiglio:partire da 0.9,se il foglio output resistuisce ? a qualche domanda, allora mettere 0.87,poi 0.85,0.83,etc.. fin quando non ci sono piu ?,se scende sotto 0.75 probabilmente la domanda non c'è): "))
     incidenza = float(valore)
     out = open('output.txt', 'w')
-    for index in range(0, 50):
+    for index in range(0, quante_domande):
         if index == 12:
             pass
         enter = 0
