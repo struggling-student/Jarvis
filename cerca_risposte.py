@@ -33,7 +33,7 @@ def start(valore, quante_domande):
                risposta = domanda_test_risp_test(index)
             else:
                 #confronto direttamente le immagini
-                risposta = domanda_test_risp_img(index)
+                risposta = domanda_test_risp_img(index,incidenza)
         else: #ho una domanda con immagine
             #controllo le risposte
             file = Path('./Data/' + dir + '/Scelta_1.txt')
@@ -77,6 +77,15 @@ def confronta_img(img1,img2,incidenza):
         return 1
    return 0
        
+def confronta(img1,img2):
+   imm1 = cv2.imread(img1)
+   r = cv2.resize(imm1, dsize=(500, 500))
+   imm2 = cv2.imread(img2)
+   r2 = cv2.resize(imm2, dsize=(500, 500))
+   gray = cv2.cvtColor(r, cv2.COLOR_BGR2GRAY)
+   gray2 = cv2.cvtColor(r2, cv2.COLOR_BGR2GRAY)
+   (p,d) = structural_similarity(gray, gray2, full=True) #p è la percentuale di somiglianza, d è la matrice di differenza
+   return p
    #cv2.imshow("image",gray)
    #cv2.imshow("image2",gray2)
    #cv2.waitKey(0)
@@ -115,7 +124,7 @@ def domanda_test_risp_test(index):
                             return magicFunction(file_domanda_esame,risp1,risp2,risp3)  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
      return "?" #non ho trovato la domanda corretta
 
-def domanda_test_risp_img(index):
+def domanda_test_risp_img(index,incidenza):
     for dir in os.listdir('./esami'):
             esame = os.listdir('./esami/' + dir)  #question
             esame = esame[0]
@@ -137,6 +146,15 @@ def domanda_test_risp_img(index):
                         risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                         risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
                         os.system("cp " + file_corretto + " ./risposta_" + str(index) + ".png")
+                        value1 = confronta(file_corretto,risp1)
+                        value2 = confronta(file_corretto,risp2)
+                        value3 = confronta(file_corretto,risp3)
+                        if value1 == max(value1,value2,value3):
+                            return "1"
+                        elif value2 == max(value1,value2,value3):
+                            return "2"
+                        elif value3 == max(value1,value2,value3):
+                            return "3"
                         return "Immagine"
                        # if confronta_img(file_corretto,risp1) == 0:
                         #    return "1"
@@ -209,6 +227,15 @@ def domanda_img_risp_img(index,incidenza):
                             risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                             risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
                             os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
+                            value1 = confronta(file_corretto,risp1)
+               		    value2 = confronta(file_corretto,risp2)
+                       	    value3 = confronta(file_corretto,risp3)
+                            if value1 == max(value1,value2,value3):
+                                return "1"
+                            elif value2 == max(value1,value2,value3):
+                                return "2"
+                            elif value3 == max(value1,value2,value3):
+                                return "3"
                             return "Immagine"
                         # if confronta_img(file_corretto,risp1) == 0:
                         #     return "1"
@@ -220,5 +247,3 @@ def domanda_img_risp_img(index,incidenza):
                         #      return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
     return "?" #non ho trovato la domanda corretta
 
-if __name__ == '__main__':
-    start()
