@@ -228,8 +228,8 @@ def domanda_img_risp_img(index,incidenza):
                             risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
                             os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
                             value1 = confronta(file_corretto,risp1)
-               		    value2 = confronta(file_corretto,risp2)
-                       	    value3 = confronta(file_corretto,risp3)
+                            value2 = confronta(file_corretto,risp2)
+                            value3 = confronta(file_corretto,risp3)
                             if value1 == max(value1,value2,value3):
                                 return "1"
                             elif value2 == max(value1,value2,value3):

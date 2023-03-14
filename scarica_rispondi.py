@@ -1,11 +1,12 @@
 #NOTE : Imports, non toccare.
 import os
+import time
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-def get_questions(driver, quante_domande):
+def get_questions(driver, quante_domande, tempo_di_attesa):
     if quante_domande == 50:
        limite = 49 
     elif quante_domande == 10:
@@ -22,7 +23,7 @@ def get_questions(driver, quante_domande):
 
     #NOTE : Cambiare il range in base al numero di domande
     for i in range(quante_domande):
-        
+        time.sleep(tempo_di_attesa)
         #NOTE: Prende le domande dalla pagina 
         domande = driver.find_elements(by=By.XPATH, value='//div[@class="qtext"]')
         for domanda in domande:
@@ -72,7 +73,7 @@ def get_questions(driver, quante_domande):
             continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
             continua.click()
 
-def rispondi(driver, quante_domande):
+def rispondi(driver, quante_domande, tempo_di_attesa):
     if quante_domande == 50:
        limite = 49 
     elif quante_domande == 10:
@@ -85,6 +86,7 @@ def rispondi(driver, quante_domande):
         output = f.read()
         output = output.split("\n")
         for risposta in output:
+            time.sleep(tempo_di_attesa)
             if risposta == "Immagine":
                 if domanda == limite:
                     print("Risposta nella cartella immagine.")
@@ -146,7 +148,7 @@ def rispondi(driver, quante_domande):
                     continua=driver.find_element(by=By.XPATH,value='//input[@value="Next page"]')
                     continua.click()   
 
-def main(domande, risposte, quante_domande):
+def main(domande, risposte, quante_domande, tempo_di_attesa):
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", "localhost:8989")
     service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
@@ -154,7 +156,7 @@ def main(domande, risposte, quante_domande):
 
     if domande == True:
         #NOTE : Prende le domande dalla pagina e le salva nella cartella data
-        get_questions(driver, quante_domande)
+        get_questions(driver, quante_domande, tempo_di_attesa)
     if risposte == True:
         #NOTE: Risponde alle domande in base al contenuto del file output.txt
-        rispondi(driver, quante_domande)
+        rispondi(driver, quante_domande, tempo_di_attesa)
