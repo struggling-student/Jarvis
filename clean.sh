@@ -9,4 +9,5 @@ rm -f ./output.txt
 # Eliminare i file risposta_{}.png
 rm -f ./risposta*
 # Eliminare il pycache
-rm -rf ./__pycache__    
+rm -rf ./scarica/__pycache__   
+rm -rf ./cerca/__pycache__   

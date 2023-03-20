@@ -1,8 +1,8 @@
 #NOTE: trova le risposte
 import time
-import cerca_risposte
+import cerca.cerca_risposte as cerca_risposte
 #NOTE: scarica le domande e risponde alle domande
-import scarica_rispondi
+import scarica.scarica_rispondi as scarica_rispondi
 
 # per il time.sleep() ovvero quanti secondi vuoi che aspetta tra un'operazione e l'altra
 tempo_di_attesa = 0

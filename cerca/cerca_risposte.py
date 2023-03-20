@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 import cv2
 import numpy as np
-from magic_file import magicFunction
+from cerca.risposte_immagini import magicFunction
 
 from skimage.metrics import structural_similarity 
 

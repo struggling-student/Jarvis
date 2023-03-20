@@ -82,7 +82,7 @@ def rispondi(driver, quante_domande, tempo_di_attesa):
         limite = 39
     domanda = 0
     #NOTE: Prende il file output.txt    
-    with open("/Users/lucian/Documents/GitHub/ExamScraper/output.txt", "r") as f:
+    with open("./output.txt", "r") as f:
         output = f.read()
         output = output.split("\n")
         for risposta in output:
@@ -151,7 +151,7 @@ def rispondi(driver, quante_domande, tempo_di_attesa):
 def main(domande, risposte, quante_domande, tempo_di_attesa):
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", "localhost:8989")
-    service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
+    service = Service('/Users/lucian/Documents/driver/chromedriver')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     if domande == True:
