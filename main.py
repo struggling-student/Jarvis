@@ -6,7 +6,7 @@ import scarica.scarica_rispondi as scarica_rispondi
 
 # per il time.sleep() ovvero quanti secondi vuoi che aspetta tra un'operazione e l'altra
 tempo_di_attesa = 0
-quante_domande = 50
+quante_domande = 10
 domande = True
 risposte = False
 # Scarica le domande
