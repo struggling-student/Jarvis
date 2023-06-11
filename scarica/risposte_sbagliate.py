@@ -8,7 +8,7 @@ import os
 
 
 chrome_options = Options()
-chrome_options.add_experimental_option("debuggerAddress", "localhost:8989")
+chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")
 service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 

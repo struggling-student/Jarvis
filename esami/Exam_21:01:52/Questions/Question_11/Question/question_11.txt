@@ -1,0 +1,3 @@
+Si consideri la seguente architettura software:
+
+Quale dei seguneti modelli Modelica meglio la rappresenta.
