@@ -47,7 +47,7 @@ def main(domande, risposte, quante_domande, tempo_di_attesa):
 ### Google Chrome 
 In order for Jarvis to work properly you have to start Google Chrome with the following command:
 ```bash
-google-chrome --remote-debugging-port=9222 --user-data-dir="~/chrome-profile"
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="~/chrome-profile"
 ```
 > **Warning**
 > Make sure to create a directory called `chrome-profile` in your home directory. If you don't do so, then Google Chrome will not start. You can delete it once you have finished using Jarvis.
@@ -63,7 +63,7 @@ Everything you need to know about how to use Jarvis is explained in the followin
 ### Step 1 - Start Google Chrome
 Start Google Chrome with remote debugging enabled. You can do so by running the following command:
 ```bash
-google-chrome --remote-debugging-port=9222 --user-data-dir="~/chrome-profile"
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="~/chrome-profile"
 ``` 
 Google Chrome will start and you will see a message in the terminal saying that the browser is ready to be used. You can close the browser once you have started it by manually closing it or by closing the process in the terminal by pressing `CTRL + C`. 
 Once you have started Google Chrome, you have to login to the website where the exam/test is located. You can do so by going to the website and logging in with your credentials. Once you have logged in, you have to go to the exam/test that you want to use Jarvis on. Once you are on the exam/test page, you can follow the next step. 
