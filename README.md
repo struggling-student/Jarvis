@@ -1,3 +1,5 @@
+This is the windows version, don't follow these instructions at the moment...
+
 # Jarvis - Automated tool for answering questions
 > Jarvis is a tool made with Selenium and Python that has the ability to answers questions of a given exam. Also it can be used to download data from each exam and store it for later use.
 

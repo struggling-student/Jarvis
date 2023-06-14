@@ -5,6 +5,21 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import requests
+
+def get_image(driver, imgurl):
+    headers = {
+    "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+    s = requests.session()
+    s.headers.update(headers)
+
+    for cookie in driver.get_cookies():
+        c = {cookie['name']: cookie['value']}
+        s.cookies.update(c)
+
+    return s.get(imgurl, allow_redirects=True).content
 
 def get_questions(driver, quante_domande, tempo_di_attesa):
     if quante_domande == 50:
@@ -30,16 +45,18 @@ def get_questions(driver, quante_domande, tempo_di_attesa):
             #NOTE: Se una domanda è un'immagine, allora salva l'immagine
             if len(domanda.find_elements(by=By.TAG_NAME, value="img")) > 0:
                 text_file = f"Data/Domanda_{i}/Domanda.txt"
-                with open(text_file, "w") as f:
+                with open(text_file, "w", encoding="utf-8") as f:
                     f.write(domanda.text)
 
                 photo_file = f"Data/Domanda_{i}/Domanda.png"
                 with open(photo_file, "wb") as f:
-                    f.write(domanda.find_element(by=By.TAG_NAME, value="img").screenshot_as_png) 
+                    imgurl = domanda.find_element(by=By.TAG_NAME, value="img").get_attribute('src')
+                    #f.write(domanda.find_element(by=By.TAG_NAME, value="img").screenshot_as_png) 
+                    f.write(get_image(driver, imgurl)) 
             #NOTE: Se una domanda è un testo, allora salva il testo
             else:
                 file_name = f"Data/Domanda_{i}/Domanda.txt"
-                with open(file_name, "w") as f:
+                with open(file_name, "w", encoding="utf-8") as f:
                     f.write(domanda.text)
 
         #NOTE: Prende le scelte dalla pagina 
@@ -56,13 +73,15 @@ def get_questions(driver, quante_domande, tempo_di_attesa):
                 numero+=1
                 file_name = f"Data/Domanda_{i}/Scelta_{numero}.png"
                 with open(file_name, "wb") as f:
-                    f.write(scelta.find_element(by=By.TAG_NAME, value="img").screenshot_as_png)
+                    imgurl = scelta.find_element(by=By.TAG_NAME, value="img").get_attribute('src')
+                    #f.write(scelta.find_element(by=By.TAG_NAME, value="img").screenshot_as_png)
+                    f.write(get_image(driver, imgurl)) 
             #NOTE: Se una scelta è un testo, allora salva il testo
             else:
                 contatore+=1
                 numero+=1
                 file_name = f"Data/Domanda_{i}/Scelta_{numero}.txt"
-                with open(file_name, "w") as f:
+                with open(file_name, "w", encoding="utf-8") as f:
                     f.write(scelta.text)
         
         if i == limite:
@@ -151,7 +170,7 @@ def rispondi(driver, quante_domande, tempo_di_attesa):
 def main(domande, risposte, quante_domande, tempo_di_attesa):
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")
-    service = Service('/Users/lucian/Documents/driver/chromedriver')
+    service = Service(r'C:\chromedriver\chromedriver.exe')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     if domande == True:
