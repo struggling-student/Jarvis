@@ -145,7 +145,7 @@ def domanda_test_risp_img(index,incidenza):
                         risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                         risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                         risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                        os.system("cp " + file_corretto + " ./risposta_" + str(index) + ".png")
+                        os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
                         value1 = confronta(file_corretto,risp1)
                         value2 = confronta(file_corretto,risp2)
                         value3 = confronta(file_corretto,risp3)
@@ -226,7 +226,7 @@ def domanda_img_risp_img(index,incidenza):
                             risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                             risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                             risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                            os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
+                            os.system("copy  " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
                             value1 = confronta(file_corretto,risp1)
                             value2 = confronta(file_corretto,risp2)
                             value3 = confronta(file_corretto,risp3)
