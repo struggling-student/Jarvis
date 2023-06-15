@@ -1,18 +1,11 @@
-#vado a leggere l'immagine domanda se presente
-#e il testo della domanda
-#navigo nel filesystem per prendere la risposta
-#e la restituisco
-#se non c'è la risposta resituisico 'non presente'
 import os
 import re
-#import shutil
 from pathlib import Path
 import cv2
-import numpy as np
-from cerca.risposte_immagini import magicFunction
-
+import config
 from skimage.metrics import structural_similarity 
 
+from search.risposte_immagini import magicFunction
 def main(valore, quante_domande):
     start(valore, quante_domande)
 
@@ -145,7 +138,10 @@ def domanda_test_risp_img(index,incidenza):
                         risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                         risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                         risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                        os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                        if config.OS == 'WINDOWS':
+                            os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                        elif config.OS == 'UNIX':
+                            os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
                         value1 = confronta(file_corretto,risp1)
                         value2 = confronta(file_corretto,risp2)
                         value3 = confronta(file_corretto,risp3)
@@ -164,17 +160,16 @@ def domanda_test_risp_img(index,incidenza):
                         #    return "3"
                       #  else:
                            # return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
-    return "?" #non ho trovato la domanda corretta
+    return "?" 
 
 def domanda_img_risp_test(index,incidenza):
     for dir in os.listdir('./esami'):
-            esame = os.listdir('./esami/' + dir)  #question
+            esame = os.listdir('./esami/' + dir) 
             esame = esame[0]
             num_domande = len(os.listdir('./esami/' + dir + '/' + esame))
             for i in range(num_domande):
                 domanda = 'Question_' + str(i)
                 ls = os.listdir('./esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Question/')
-                #mi scarto tutte quelle che hanno domanda non testuale e/o risposta non testuale
                 dom_png = Path('./esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Question/question_' +str(i)+ '.png')
                 risp_img = Path('./esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Answer/answer_' +str(i)+ '.png')
                 if dom_png.exists() and not risp_img.exists():
@@ -217,16 +212,19 @@ def domanda_img_risp_img(index,incidenza):
                     file_domanda_esame_txt = './Data/Domanda_' + str(index)  + '/Domanda.txt'
                     file_domanda_corrente_txt = './esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Question/question_' +str(i)+ '.txt'
                     res = confronta_file(file_domanda_esame_txt, file_domanda_corrente_txt)
-                    if res == 1: #sono uguali,confronto image
+                    if res == 1: 
                         file_domanda_esame = './Data/Domanda_' + str(index)  + '/Domanda.png'
                         file_domanda_corrente = './esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Question/question_' +str(i)+ '.png'
                         res = confronta_img(file_domanda_esame, file_domanda_corrente,incidenza)
-                        if res == 1: #sono uguali
+                        if res == 1:
                             file_corretto = './esami/' + dir + '/' + esame + '/' + domanda + '/' + 'Answer/answer_' +str(i)+ '.png'
                             risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                             risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                             risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                            os.system("copy  " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                            if config.OS == 'WINDOWS':
+                                os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                            elif config.OS == 'UNIX':
+                                os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
                             value1 = confronta(file_corretto,risp1)
                             value2 = confronta(file_corretto,risp2)
                             value3 = confronta(file_corretto,risp3)
@@ -237,13 +235,4 @@ def domanda_img_risp_img(index,incidenza):
                             elif value3 == max(value1,value2,value3):
                                 return "3"
                             return "Immagine"
-                        # if confronta_img(file_corretto,risp1) == 0:
-                        #     return "1"
-                        #  elif confronta_img(file_corretto,risp2) == 0:
-                        #      return "2"
-                        #  elif confronta_img(file_corretto,risp2) == 0:
-                        #      return "3"
-                        #  else:
-                        #      return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
-    return "?" #non ho trovato la domanda corretta
-
+    return "?"

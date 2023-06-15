@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import requests
+import config
 
 def get_image(driver, imgurl):
     headers = {
@@ -169,8 +170,11 @@ def rispondi(driver, quante_domande, tempo_di_attesa):
 
 def main(domande, risposte, quante_domande, tempo_di_attesa):
     chrome_options = Options()
-    chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")
-    service = Service(r'C:\chromedriver\chromedriver.exe')
+    chrome_options.add_experimental_option("debuggerAddress", config.LOCAL_HOST)
+    if config.OS == 'WINDOWS':
+        service = Service(config.CHROME_DRIVER_PATH_WINDOWS)
+    elif config.OS == 'UNIX':
+        service = Service(config.CHROME_DRIVER_PATH_UNIX)
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     if domande == True:
