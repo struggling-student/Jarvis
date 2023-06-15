@@ -2,3 +2,4 @@ selenium
 numpy
 opencv-python
 scikit-image
+requests

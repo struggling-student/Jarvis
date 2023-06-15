@@ -3,13 +3,17 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
+import config
 from datetime import datetime
 import os
 
 
 chrome_options = Options()
-chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")
-service = Service('/Users/lucian/Documents/chromedriver/chromedriver')
+chrome_options.add_experimental_option("debuggerAddress", config.LOCAL_HOST)
+if config.OS == 'WINDOWS':
+    service = Service(config.CHROME_DRIVER_PATH_WINDOWS)
+elif config.OS == 'UNIX':
+    service = Service(config.CHROME_DRIVER_PATH_UNIX)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
@@ -25,14 +29,11 @@ os.mkdir(directory)
 
 for valore,link in enumerate(links):
     driver.get(link)
-
-    # prendo la domanda
     question = driver.find_element(by=By.XPATH, value='//div[@class="qtext"]')
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}'
     os.mkdir(directory)
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Question'
     os.mkdir(directory)
-
 
     if len(question.find_elements(by=By.TAG_NAME, value="img")) > 0:
             immagine = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Question/question_{valore}.png'
@@ -46,7 +47,6 @@ for valore,link in enumerate(links):
         with open(testo, 'w') as file:
             file.write(question.text)
             
-    # prendo le scelte
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Choices'
     os.mkdir(directory)
     scelte = driver.find_elements(by=By.XPATH, value='//div[@class="answer"]//div[@class="d-flex w-100"]')
@@ -67,7 +67,6 @@ for valore,link in enumerate(links):
             with open(testo, 'w') as file:
                 file.write(scelta.text)
 
-    # prendo la risposta
     risposta = driver.find_element(by=By.XPATH, value='//div[@class="rightanswer"]')
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Answer'
     os.mkdir(directory)

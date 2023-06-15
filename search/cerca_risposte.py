@@ -6,10 +6,11 @@
 import os
 import re
 #import shutil
+import config
 from pathlib import Path
 import cv2
 import numpy as np
-from cerca.risposte_immagini import magicFunction
+from search.risposte_immagini import magicFunction
 
 from skimage.metrics import structural_similarity 
 
@@ -145,7 +146,10 @@ def domanda_test_risp_img(index,incidenza):
                         risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                         risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                         risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                        os.system("cp " + file_corretto + " ./risposta_" + str(index) + ".png")
+                        if config.OS == 'WINDOWS':
+                            os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                        elif config.OS == 'UNIX':
+                            os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
                         value1 = confronta(file_corretto,risp1)
                         value2 = confronta(file_corretto,risp2)
                         value3 = confronta(file_corretto,risp3)
@@ -226,7 +230,10 @@ def domanda_img_risp_img(index,incidenza):
                             risp1 = './Data/Domanda_' + str(index)  + '/Scelta_1.png'
                             risp2 = './Data/Domanda_' + str(index)  + '/Scelta_2.png'
                             risp3 = './Data/Domanda_' + str(index)  + '/Scelta_3.png'
-                            os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
+                            if config.OS == 'WINDOWS':
+                                os.system("copy " + file_corretto.replace('/','\\') + " .\\risposta_" + str(index) + ".png")
+                            elif config.OS == 'UNIX':
+                                os.system("cp  " + file_corretto + " ./risposta_" + str(index) + ".png")
                             value1 = confronta(file_corretto,risp1)
                             value2 = confronta(file_corretto,risp2)
                             value3 = confronta(file_corretto,risp3)
@@ -246,4 +253,3 @@ def domanda_img_risp_img(index,incidenza):
                         #  else:
                         #      return "-1"  #non ho trovato la risposta corretta(se succede controllare le risposte perche molto strano)
     return "?" #non ho trovato la domanda corretta
-
