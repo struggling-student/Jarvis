@@ -7,6 +7,8 @@
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) 
 ![macOS](https://img.shields.io/badge/mac%20os-white?style=for-the-badge&logo=macos&logoColor=black)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 > Jarvis is a tool made with Selenium and Python that has the ability to answer questions of a Quiz on the Moodle website. If there are any new questions, Jarvis is able to download them and store them for use in a new quiz.
 
