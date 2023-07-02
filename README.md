@@ -20,7 +20,7 @@ You can download the ChromeDriver from the following [link](https://chromedriver
 
 ## Usage
 > **Note**
-> This part is divided into two sections. The first section is for Linux users and the second section is for Windows users. Follow the steps for your operating system to learn how to use Jarvis.
+> This part is divided into two sections. The first section is for Unix users and the second section is for Windows users. Follow the steps for your operating system to learn how to use Jarvis.
 ### How to use Jarvis - Unix
 This part is only for Unix users (MacOS and Linux). If you are a Windows user, you can skip this part and go to the [How to use Jarvis - Windows](#how-to-use-jarvis---windows) section.
 #### Step 1 - Start Google Chrome in remote debugging mode
@@ -108,9 +108,18 @@ Once Jarvis has finished answering the questions, and you want to use Jarvis to 
 ```
 After you have deleted the previous questions, you can run the main.py file again and Jarvis will start answering the questions of the new quiz.
 
+## Contributing
+Thank you for considering contributing to Jarvis! If you would like to contribute, feel free to open a pull request. If you have any questions, feel free to open an issue.
+
+I would like to thank the following people for their contributions:
+- [Davide](https://github.com/davidebelcastro-sig)
+    - Added the whole search engine for searching the right answers to the questions.
+- [Ryho](https://github.com/ryyhho)
+    - Added Windows support to Jarvis.    
+
 ## Disclaimer
 > **Warning**
 > This tool is made for educational purposes only. I am not responsible for how the tool is used. Jarvis is not intended to be used for cheating on exams, but rather used to learn how to use Selenium and Python for web scraping and automation.
 
-### License
+## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
