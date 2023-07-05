@@ -12,8 +12,6 @@
 
 > Jarvis is a tool made with Selenium and Python that has the ability to answer questions of a Quiz on the Moodle website. If there are any new questions, Jarvis is able to download them and store them for use in a new quiz.
 
-https://user-images.githubusercontent.com/32139751/236615814-bd5a4d6c-01e9-4a33-82d2-0b6576fe8151.mov
-
 ## :pushpin: Installation 
 > **Note**
 > Follow the steps below to install everything that is required to run Jarvis. Once you have installed everything you can skip to the [Usage](#usage) section to learn how to use Jarvis.
