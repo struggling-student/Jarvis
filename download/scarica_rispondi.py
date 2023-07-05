@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import requests
 import config
+import base64
+from PIL import Image
 
 def get_image(driver, imgurl):
     headers = {
@@ -19,7 +21,7 @@ def get_image(driver, imgurl):
     for cookie in driver.get_cookies():
         c = {cookie['name']: cookie['value']}
         s.cookies.update(c)
-
+    print(imgurl)
     return s.get(imgurl, allow_redirects=True).content
 
 def get_questions(driver, quante_domande, tempo_di_attesa):
@@ -52,8 +54,19 @@ def get_questions(driver, quante_domande, tempo_di_attesa):
                 photo_file = f"Data/Domanda_{i}/Domanda.png"
                 with open(photo_file, "wb") as f:
                     imgurl = domanda.find_element(by=By.TAG_NAME, value="img").get_attribute('src')
-                    #f.write(domanda.find_element(by=By.TAG_NAME, value="img").screenshot_as_png) 
-                    f.write(get_image(driver, imgurl)) 
+                    if imgurl.startswith("data:image"):
+                        imgurl = imgurl.split(",")[1]
+                        f.write(base64.urlsafe_b64decode(imgurl)) 
+                        im = Image.open(photo_file)
+                        fill_color = (255, 255, 255)
+                        im = im.convert("RGBA")   # it had mode P after DL it from OP
+                        if im.mode in ('RGBA', 'LA'):
+                            background = Image.new(im.mode[:-1], im.size, fill_color)
+                            background.paste(im, im.split()[-1]) # omit transparency
+                            im = background
+                        im.convert("RGB").save(photo_file, 'PNG')
+                    else:
+                        f.write(get_image(driver, imgurl)) 
             #NOTE: Se una domanda è un testo, allora salva il testo
             else:
                 file_name = f"Data/Domanda_{i}/Domanda.txt"
@@ -76,7 +89,19 @@ def get_questions(driver, quante_domande, tempo_di_attesa):
                 with open(file_name, "wb") as f:
                     imgurl = scelta.find_element(by=By.TAG_NAME, value="img").get_attribute('src')
                     #f.write(scelta.find_element(by=By.TAG_NAME, value="img").screenshot_as_png)
-                    f.write(get_image(driver, imgurl)) 
+                    if imgurl.startswith("data:image"):
+                        imgurl = imgurl.split(",")[1]
+                        f.write(base64.urlsafe_b64decode(imgurl)) 
+                        im = Image.open(photo_file)
+                        fill_color = (255, 255, 255)
+                        im = im.convert("RGBA")   # it had mode P after DL it from OP
+                        if im.mode in ('RGBA', 'LA'):
+                            background = Image.new(im.mode[:-1], im.size, fill_color)
+                            background.paste(im, im.split()[-1]) # omit transparency
+                            im = background
+                        im.convert("RGB").save(photo_file, 'PNG')
+                    else:
+                        f.write(get_image(driver, imgurl)) 
             #NOTE: Se una scelta è un testo, allora salva il testo
             else:
                 contatore+=1
