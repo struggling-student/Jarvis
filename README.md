@@ -162,8 +162,24 @@ Once Jarvis has finished answering the questions, and you want to use Jarvis to 
 After you have deleted the previous questions, you can run the main.py file again and Jarvis will start answering the questions of the new quiz.
 ## Download new questions
 
-TODO SOON
+> **Note**
+> In this section you are going to learn how to download questions that Jarvis has not seen before. This is useful if you want to use update Jarvis with new questions.
 
+### Start a Quiz
+You need to start a new Quiz on Moodle and start Jarvis on it. It will answer to all the questions that are present in the 'Esami' folder. If there are new questions, Jarvis will download them and store them in the 'Esami' folder.
+
+Once Jarvis has finished answering the questions, if there are new questions that have been marked as wrong, you can download them by following the steps below.
+
+### Open the risposte_sbagliate.py file
+Open the risposte_sbagliate.py file inside the download directory and follow the steps below.
+
+1. Place yourself on the first question of the quiz once the exam has finished.
+2. Run the risposte_sbagliate.py file.
+3. Jump back to the Chrome page once you started the risposte_sbagliate.py file.
+4. Jarvis will download only the questions that are marked as wrong (Red color).
+5. Once Jarvis has finished downloading the questions, you will see a new directory inside the 'Esami' directory. This directory will contain the new questions that Jarvis has downloaded.
+
+Follow the steps above every time you want to download new questions that Jarvis has not seen before.
 ## Contributing
 
 Thank you for considering contributing to Jarvis! If you would like to contribute, feel free to open a pull request. If you have any questions, feel free to open an issue.
