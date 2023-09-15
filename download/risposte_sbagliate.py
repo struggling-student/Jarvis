@@ -8,6 +8,7 @@ import os
 import config
 from PIL import Image
 import base64
+
 def get_image(driver, imgurl):
     headers = {
     "User-Agent":
@@ -28,18 +29,13 @@ if config.OS == 'WINDOWS':
 elif config.OS == 'UNIX':
     service = Service(config.CHROME_DRIVER_PATH_UNIX)
 driver = webdriver.Chrome(service=service, options=chrome_options)
-
-
 links = [x.get_attribute('href') for x in driver.find_elements(by=By.XPATH,value='//a[contains(@class, "notanswered")]')]
-
 now = datetime.now()
 file_name = now.strftime("%H:%M:%S")
-
 directory = f'./esami/Exam_{file_name}'
 os.mkdir(directory)
 directory = f'./esami/Exam_{file_name}/Questions'
 os.mkdir(directory)
-
 for valore,link in enumerate(links):
     driver.get(link)
     question = driver.find_element(by=By.XPATH, value='//div[@class="qtext"]')
@@ -47,7 +43,6 @@ for valore,link in enumerate(links):
     os.mkdir(directory)
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Question'
     os.mkdir(directory)
-
     if len(question.find_elements(by=By.TAG_NAME, value="img")) > 0:
             immagine = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Question/question_{valore}.png'
             with open(immagine, 'wb') as f:
@@ -57,10 +52,10 @@ for valore,link in enumerate(links):
                     f.write(base64.urlsafe_b64decode(imgurl)) 
                     im = Image.open(immagine)
                     fill_color = (255, 255, 255)
-                    im = im.convert("RGBA")   # it had mode P after DL it from OP
+                    im = im.convert("RGBA")   
                     if im.mode in ('RGBA', 'LA'):
                         background = Image.new(im.mode[:-1], im.size, fill_color)
-                        background.paste(im, im.split()[-1]) # omit transparency
+                        background.paste(im, im.split()[-1]) 
                         im = background
                     im.convert("RGB").save(immagine, 'PNG')
                 else:
@@ -72,7 +67,6 @@ for valore,link in enumerate(links):
         testo= f'./esami/Exam_{file_name}/Questions/Question_{valore}/Question/question_{valore}.txt'
         with open(testo, 'w') as file:
             file.write(question.text)
-            
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Choices'
     os.mkdir(directory)
     scelte = driver.find_elements(by=By.XPATH, value='//div[@class="answer"]//div[@class="d-flex w-100"]')
@@ -92,10 +86,10 @@ for valore,link in enumerate(links):
                     f.write(base64.urlsafe_b64decode(imgurl)) 
                     im = Image.open(immagine)
                     fill_color = (255, 255, 255)
-                    im = im.convert("RGBA")   # it had mode P after DL it from OP
+                    im = im.convert("RGBA")   
                     if im.mode in ('RGBA', 'LA'):
                         background = Image.new(im.mode[:-1], im.size, fill_color)
-                        background.paste(im, im.split()[-1]) # omit transparency
+                        background.paste(im, im.split()[-1]) 
                         im = background
                     im.convert("RGB").save(immagine, 'PNG')
                 else:
@@ -105,7 +99,6 @@ for valore,link in enumerate(links):
             testo = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Choices/choice_{contatore}.txt'
             with open(testo, 'w') as file:
                 file.write(scelta.text)
-
     risposta = driver.find_element(by=By.XPATH, value='//div[@class="rightanswer"]')
     directory = f'./esami/Exam_{file_name}/Questions/Question_{valore}/Answer'
     os.mkdir(directory)
@@ -118,10 +111,10 @@ for valore,link in enumerate(links):
                     f.write(base64.urlsafe_b64decode(imgurl)) 
                     im = Image.open(immagine)
                     fill_color = (255, 255, 255)
-                    im = im.convert("RGBA")   # it had mode P after DL it from OP
+                    im = im.convert("RGBA")   
                     if im.mode in ('RGBA', 'LA'):
                         background = Image.new(im.mode[:-1], im.size, fill_color)
-                        background.paste(im, im.split()[-1]) # omit transparency
+                        background.paste(im, im.split()[-1]) 
                         im = background
                     im.convert("RGB").save(immagine, 'PNG')
                 else:
