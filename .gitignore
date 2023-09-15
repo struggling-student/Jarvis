@@ -76,5 +76,3 @@ dmypy.json
 .pytype/
 cython_debug/
 .DS_Store
-chrome-data/
-chrome-driver/
