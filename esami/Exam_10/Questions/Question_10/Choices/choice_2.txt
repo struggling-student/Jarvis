@@ -1,2 +1,0 @@
-2.
-Test automatizzati sono eseguiti sulla prima release del sistema.

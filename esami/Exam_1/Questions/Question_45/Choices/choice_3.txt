@@ -1,2 +1,0 @@
-3.
-Assicurarsi che i requisisti descrivano tutte le funzionalità e vincoli (e.g., security, performance) del sistema desiderato dal customer.

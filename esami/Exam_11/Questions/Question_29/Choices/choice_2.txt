@@ -1,2 +1,0 @@
-2.
-Requirements specification precedes the component analysis activity.

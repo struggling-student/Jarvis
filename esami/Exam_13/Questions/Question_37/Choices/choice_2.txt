@@ -1,2 +1,0 @@
-2.
-At time instants of form 1 + 4*k (with k = 0, 1, 2, 3, ...) x takes value "false".

@@ -1,2 +1,0 @@
-3.
-Development and integration are not needed thanks to reuse.

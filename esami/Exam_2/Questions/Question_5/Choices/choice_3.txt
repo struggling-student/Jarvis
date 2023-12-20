@@ -1,2 +1,0 @@
-3.
-Pipe and filter architecture.

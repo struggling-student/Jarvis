@@ -1,2 +1,0 @@
-2.
-F(x, y, z) = if (x > y) then (z == x) else (z == y + 1)
