@@ -1,5 +1,8 @@
 # Jarvis - Automated tool for answering questions
 
+> [!CAUTION]
+> Dear Contributors and Users, we would like to inform you that the repository for Jarvis has been officially archived. This means that no further updates, enhancements, or modifications will be added to this project in its current state. For those still interested in contributing or modifying Jarvis, we encourage you to fork the repository. This will allow you to create your own branch and continue development according to your own vision and requirements. Thank you for your understanding and for your contributions to Jarvis. We look forward to seeing how the community takes this project forward in their own unique ways. Best regards.
+
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Selenium](https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
@@ -88,7 +91,7 @@ OS = "UNIX"
 # NOTE: We are using port 9222 because that is the port that we used to start Google Chrome in remote debugging mode. If you are using a different port, make sure to change it here as well.
 LOCAL_HOST = 'localhost:9222'
 # NOTE: You will need to change the path to the ChromeDriver that you downloaded in the installation section. 
-CHROME_DRIVER_PATH_UNIX = '/Users/lucian/Documents/driver/chromedriver'
+CHROME_DRIVER_PATH_UNIX = '/Users/person/Documents/driver/chromedriver'
 # NOTE: Do not youch the CHROME_DRIVER_PATH_WINDOWS variable.
 ```
 Once you have changed the variables, Jarvis is suited for your system.
@@ -180,15 +183,6 @@ Open the risposte_sbagliate.py file inside the download directory and follow the
 5. Once Jarvis has finished downloading the questions, you will see a new directory inside the 'Esami' directory. This directory will contain the new questions that Jarvis has downloaded.
 
 Follow the steps above every time you want to download new questions that Jarvis has not seen before.
-## Contributing
-
-Thank you for considering contributing to Jarvis! If you would like to contribute, feel free to open a pull request. If you have any questions, feel free to open an issue.
-
-I would like to thank the following people for their contributions:
-- [Davide](https://github.com/davidebelcastro-sig)
-    - Added the whole search engine for searching the right answers to the questions.
-- [Ryho](https://github.com/ryyhho)
-    - Added Windows support to Jarvis.    
 
 ## Disclaimer
 
